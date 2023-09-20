@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Movie() {
   // const [movie, setMovie] = useState({ cast: [] });
@@ -32,9 +33,13 @@ export default function Movie() {
       <p>Genre: {movie.genre}</p>
       <img src={movie.image} alt="Title Pic"></img>
       {movie.cast &&
-        movie.cast.map((actor) => {
-          console.log(actor);
-          return <p key={actor.id}>{actor.character}</p>;
+        movie.cast.map((character) => {
+          console.log(character);
+          return (
+            <p key={character.id}>
+              <Link to={"/actor/" + character.id}>{character.character}</Link>
+            </p>
+          );
         })}
     </div>
   );
