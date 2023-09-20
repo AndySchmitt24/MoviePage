@@ -3,8 +3,9 @@ import axios from "axios";
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    console.log("This callback will be called on mount");
+    setIsLoading(true);
     axios
       .get(
         "https://2zc6fti416.execute-api.eu-central-1.amazonaws.com/prod/movies/"
@@ -17,16 +18,18 @@ export default function Movies() {
         console.error(error);
       })
       .finally(() => {
+        setIsLoading(false);
         console.log("finally");
       });
   }, []);
 
-  console.log("movies " + movies);
   return (
     <div>
-      <p>Movies</p>
+      <p>Movies:</p>
+      {isLoading}
       {movies.map((movie) => {
-        console.log(movie);
+        // console.log(movie);
+        return <p key={movie.id}>{movie.title}</p>;
       })}
     </div>
   );
