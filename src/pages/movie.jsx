@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Movie() {
+  // const [movie, setMovie] = useState({ cast: [] });
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   console.log(movieId);
@@ -30,6 +31,11 @@ export default function Movie() {
       <p>Movie: {movie.title}</p>
       <p>Genre: {movie.genre}</p>
       <img src={movie.image} alt="Title Pic"></img>
+      {movie.cast &&
+        movie.cast.map((actor) => {
+          console.log(actor);
+          return <p key={actor.id}>{actor.character}</p>;
+        })}
     </div>
   );
 }
