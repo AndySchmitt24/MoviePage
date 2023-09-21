@@ -3,18 +3,18 @@ import axios from "axios";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import { Link } from "react-router-dom";
 
-export default function Movies() {
-  const [movies, setMovies] = useState([]);
+export default function Actors() {
+  const [actors, setActors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     axios
       .get(
-        "https://2zc6fti416.execute-api.eu-central-1.amazonaws.com/prod/movies/"
+        "https://2zc6fti416.execute-api.eu-central-1.amazonaws.com/prod/movies/actors"
       )
       .then(({ data }) => {
         console.log(data);
-        setMovies(data);
+        setActors(data);
       })
       .catch((error) => {
         console.error(error);
@@ -27,14 +27,13 @@ export default function Movies() {
 
   return (
     <div>
-      <h1>Movies:</h1>
+      <h1>Actors:</h1>
 
       {isLoading ? <PacmanLoader /> : false}
-      {movies.map((movie) => {
-        // console.log(movie);
+      {actors.map((actor) => {
         return (
-          <p key={movie.id}>
-            <Link to={"/movie/" + movie.id}>{movie.title}</Link>
+          <p key={actor.id}>
+            <Link to={"/actor/" + actor.id}>{actor.name}</Link>
           </p>
         );
       })}
