@@ -33,7 +33,9 @@ export default function Home() {
   }
   return (
     <div>
-      <h2>Zufälliger Vorschau: {randomMovie.title}</h2>
+      <h2>
+        Zufälliger Vorschau: <br /> {randomMovie.title}
+      </h2>
       <p>
         <Link to={`movies/` + randomMovie.id}>
           <img src={randomMovie.image} alt={randomMovie.title} />
